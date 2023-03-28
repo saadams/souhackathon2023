@@ -1,4 +1,4 @@
-# Southern Oregon University Hackathon 2023 Project
+# Hackathon 2023 Project RNN text generation
 
 Southern Oregon University Hackathon 2023 is organized and run by the Southern Oregon University Computer Science Club.
 
