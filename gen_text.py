@@ -5,9 +5,7 @@ from tensorflow.keras.layers import Embedding, LSTM, Dense, Bidirectional
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 import numpy as np 
-import os
 import matplotlib.pyplot as plt
-import re
 import string
 
 
@@ -15,9 +13,9 @@ import string
 
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
 
-text_data = open('test_data.txt').read()
+text_data = open('train_data.txt').read()
 
-#print(text_data)
+
 
 #Clean the text
 #text_data = re.sub('[^A-Za-z0-9]+', ' ', text_data)
@@ -26,7 +24,7 @@ text_data = text_data.translate(str.maketrans('','', string.punctuation))
 text_data = text_data.replace('â',"")
 text_data = text_data.replace('€',"")
 text_data = text_data.replace('™',"")
-print(text_data)
+
 
 
 corpus = text_data.lower().split("\n")
@@ -37,7 +35,7 @@ tokenizer.fit_on_texts(corpus)
 total_words = len(tokenizer.word_index)+1
 #print(word_index)
 #print(total_words)
-print(tokenizer.word_index)
+
 
 
 # create empty list for "xs"
@@ -69,8 +67,11 @@ xs, labels = in_sequences[:,:-1],in_sequences[:,-1]
 #create matrix for ys
 ys = tf.keras.utils.to_categorical(labels,num_classes=total_words)
 
-#testing
+#testing can remove comments
 '''
+print(text_data)
+print()
+print(tokenizer.word_index)
 print(in_sequences)
 print(tokenizer.word_index['centre'])
 print(tokenizer.word_index['my'])
@@ -91,17 +92,16 @@ adam = Adam(learning_rate=0.01)
 #use categorical_crossentropy for labels to predictions comparision with metrics focused on accuracy
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
+print("-----------------------------------------")
+print("Sonnet bot is thinking....")
+print('-----------------------------------------')
 history = model.fit(xs, ys, epochs=5, verbose=1)
 
 #saves the model for later use
-'''
 
-os.mkdir(path)
-model.save('saved_model/my_model')
-'''
 
-#test
-print(model)
+
+
 
 #graph model
 
@@ -114,17 +114,17 @@ graph_model(history,'accuracy')
 
 
 #produce text
-seed_text = "Thou shall not pass this test"
+seed_text = input("Enter start of sonnet: ")
 next_words = 150
-print(tokenizer.word_index.items())
+#print(tokenizer.word_index.items())
 
-print("--------------------------------")
+print("-----------------------------------------")
 print("AI generated sonnet based on user inputed seed.")
 print('-----------------------------------------')
 for i in range(next_words):
 	token_list = tokenizer.texts_to_sequences([seed_text])[0]
 	token_list = pad_sequences([token_list], maxlen=max_seq_len-1, padding='pre')
-	predicted = np.argmax(model.predict(token_list), axis=-1)
+	predicted = np.argmax(model.predict(token_list,verbose=0), axis=-1)
 	output_word = ""
 	for word, index in tokenizer.word_index.items():
 		if index == predicted:
