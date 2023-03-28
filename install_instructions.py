@@ -6,9 +6,12 @@ user_plt = platform.system()
 print(platform.system())
 
 if user_plt.lower() == "darwin":
-    print('Mac User')
+    print('Mac User Deteced!')
+    print('Mac users follow the instructions found here for installing tensorflow: ')
 elif user_plt.lower() == "windows":
-    print('windows user')
+    print('Windows user Deteced!')
+    print("Windows users can follow instructions found here: ")
+    
 elif user_plt.lower() == 'linux':
     print("linux user")
 
