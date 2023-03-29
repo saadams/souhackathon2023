@@ -24,7 +24,7 @@ Linux Users:
 *Follow the instructions here: https://www.tensorflow.org/install/pip#linux' 
 
 
-### How to use
+### How to use:
 *After saving the files to your computer and installing all dependencies run the gen_text.py file and follow along the prompts.
 *The computer will ask how many times you want to train the bot which will affect its accuracy, the higher the number the better the accuracy but the longer and more intensive it is.
 *After the bot is done "learning" it will display a graph that must be closed before the program continues.
