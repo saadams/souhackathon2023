@@ -91,11 +91,11 @@ model.add(Dense(total_words,activation='softmax'))
 adam = Adam(learning_rate=0.01)
 #use categorical_crossentropy for labels to predictions comparision with metrics focused on accuracy
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['Accuracy'])
-
+user_sims = input("How many times do you want the bot to train? enter an int 1 or greater: ")
 print("-----------------------------------------")
 print("Sonnet bot is thinking....")
 print('-----------------------------------------')
-user_sims = input("How many times do you want the bot to train? enter an int 1 or greater: ")
+
 history = model.fit(xs, ys, epochs=int(user_sims), verbose=1)
 
 #saves the model for later use
@@ -105,15 +105,15 @@ history = model.fit(xs, ys, epochs=int(user_sims), verbose=1)
 
 
 #graph model
-
+'''
 def graph_model(history,string):
     plt.plot(history.history[string])
-    plt.xlabel("Epochs")
+    plt.xlabel("epochs")
     plt.ylabel(string)
     plt.show()
-    
-graph_model(history,'accuracy')
 
+graph_model(history, 'accuracy')
+'''
 
 #produce text
 seed_text = input("Enter start of sonnet: ")
