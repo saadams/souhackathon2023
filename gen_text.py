@@ -84,18 +84,19 @@ print(tokenizer.word_index)
 model = Sequential()
 #subtract 1 due to the last word being chopped off to create a label
 model.add(Embedding(total_words,240,input_length = max_seq_len - 1))
-model.add(LSTM(200))
+model.add(LSTM(150))
 # use softmax for probability vector vs defualt linear
 model.add(Dense(total_words,activation='softmax'))
 # create adam algo
 adam = Adam(learning_rate=0.01)
 #use categorical_crossentropy for labels to predictions comparision with metrics focused on accuracy
-model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['Accuracy'])
 
 print("-----------------------------------------")
 print("Sonnet bot is thinking....")
 print('-----------------------------------------')
-history = model.fit(xs, ys, epochs=5, verbose=1)
+user_sims = input("How many times do you want the bot to train? enter an int 1 or greater: ")
+history = model.fit(xs, ys, epochs=int(user_sims), verbose=1)
 
 #saves the model for later use
 
@@ -110,16 +111,17 @@ def graph_model(history,string):
     plt.xlabel("Epochs")
     plt.ylabel(string)
     plt.show()
+    
 graph_model(history,'accuracy')
 
 
 #produce text
 seed_text = input("Enter start of sonnet: ")
-next_words = 150
+next_words = 200
 #print(tokenizer.word_index.items())
 
 print("-----------------------------------------")
-print("AI generated sonnet based on user inputed seed.")
+print("AI generating sonnet based on user inputed seed.")
 print('-----------------------------------------')
 for i in range(next_words):
 	token_list = tokenizer.texts_to_sequences([seed_text])[0]
@@ -132,4 +134,6 @@ for i in range(next_words):
 			break
 	seed_text += " " + output_word
 print(seed_text)
+
+
 
