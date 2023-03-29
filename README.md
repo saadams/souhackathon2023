@@ -27,5 +27,6 @@ Linux Users:
 ### How to use
 After saving the files to your computer and installing all dependencies run the gen_text.py file and follow along the prompts.
 The computer will ask how many times you want to train the bot which will affect its accuracy, the higher the number the better the accuracy but the longer and more intensive it is.
-After the bot is done "learning" it will ask you to start a sonnet which it will then finish after some time to process.
-After the text is generated it will display a graph showing accuracy over each epoch(training session).
+After the bot is done "learning" it will display a graph that must be closed before the program continues.
+After closing the graph it will ask you to start a sonnet which it will then finish after some time to process.
+
