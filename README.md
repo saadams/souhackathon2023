@@ -1,3 +1,6 @@
+This is an old project from a hackathon that didnt really work as intended. Probably should have containerized this to avoid all the issues when porting from mac to windows and vice versa.
+
+
 # Hackathon 2023 Project (RNN text generation)
 
 This project is an example of a RNN(Recurrent neural network) used to create a shakespear sonnet after learning from some examples of his work. 
